@@ -237,7 +237,7 @@ install_netmap() {
        
     echo "Downloading netmap"
     cd $OPENAIRCN_DIR/..
-    git clone https://github.com/luigirizzo/netmap.git
+    git clone https://github.com/limingzhang513/netmap.git 
     cd netmap
     ./configure --kernel-sources=/usr/src/linux-source-"$current_kernel_release"/"$current_kernel_release"
   fi
@@ -313,7 +313,7 @@ install_libgtpnl_from_source() {
     cd /tmp
     echo "Downloading libgtpnl archive"
     $SUDO rm -rf /tmp/libgtpnl*
-    git clone git://git.osmocom.org/libgtpnl
+    git clone https://github.com/limingzhang513/libgtpnl.git 
     cd libgtpnl
     autoreconf -fi
     ./configure
@@ -428,7 +428,7 @@ install_1.1.5_freediameter_from_source() {
     cd /tmp
     echo "Downloading 1.1.5 freeDiameter archive"
     $SUDO rm -rf /tmp/1.1.5.tar.gz /tmp/freeDiameter-1.1.5 /tmp/freediameter
-    GIT_SSL_NO_VERIFY=true git clone https://gitlab.eurecom.fr/oai/freediameter.git -b eurecom-1.1.5
+    GIT_SSL_NO_VERIFY=true git clone https://github.com/limingzhang513/freediameter.git -b eurecom-1.1.5
     cd /tmp/freediameter
     #patch -p1 < $OPENAIRCN_DIR/SRC/S6A/freediameter/freediameter-1.1.5.patch 
     mkdir build
@@ -484,7 +484,7 @@ install_freediameter_from_source() {
     cd /tmp
     echo "Downloading 1.2.0 freeDiameter archive"
     $SUDO rm -rf /tmp/1.2.0.tar.gz* /tmp/freeDiameter-1.2.0 /tmp/freediameter
-    GIT_SSL_NO_VERIFY=true git clone https://gitlab.eurecom.fr/oai/freediameter.git -b eurecom-1.2.0  
+    GIT_SSL_NO_VERIFY=true git clone https://github.com/limingzhang513/freediameter.git -b eurecom-1.2.0  
     #wget http://www.freediameter.net/hg/freeDiameter/archive/1.2.0.tar.gz 
     #tar xzf 1.2.0.tar.gz
     cd freediameter
@@ -842,7 +842,7 @@ install_asn1c_from_source(){
   then    
     $SUDO rm -rf /tmp/asn1c
     mkdir -p /tmp/asn1c
-    git clone https://gitlab.eurecom.fr/oai/asn1c.git /tmp/asn1c
+    git clone https://github.com/limingzhang513/asn1c.git /tmp/asn1c
     cd /tmp/asn1c
     ./configure
     make > /tmp/log_compile_asn1c 2>&1
