@@ -199,8 +199,7 @@ install_xtables_addons_oai() {
     build-essential \
     dkms \
     iptables \
-    iptables-dev \"
-  #linux-headers-`uname -r`
+    iptables-dev"
   $SUDO apt-get install $OPTION $PACKAGE_LIST
   
   #by lmz
