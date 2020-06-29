@@ -874,24 +874,28 @@ install_asn1c_from_source(){
 
   if [[ $prompt =~ [yY](es)* ]]
   then    
-    mkdir -p /tmp/asn1c-r1516
-    cd /tmp/asn1c-r1516
-    rm -rf /tmp/asn1c-r1516/*
+    #mkdir -p /tmp/asn1c-r1516
+    #cd /tmp/asn1c-r1516
+    cd /tmp/
+    #rm -rf /tmp/asn1c-r1516/*
+    rm -rf asn1c-r1516
     echo "==============================download asn1c-r1516===================================="
-
-    svn co https://github.com/vlm/asn1c/trunk  /tmp/asn1c-r1516 -r 1516 > /tmp/log_compile_asn1c
-    patch -p0 < $OPENAIRCN_DIR/SRC/S1AP/MESSAGES/ASN1/asn1cpatch.p0 >> /tmp/log_compile_asn1c
-    patch -p0 < $OPENAIRCN_DIR/SRC/S1AP/MESSAGES/ASN1/asn1cpatch_2.p0 >> /tmp/log_compile_asn1c
-    patch -p0 < $OPENAIRCN_DIR/SRC/S1AP/MESSAGES/ASN1/asn1cpatch_3.p0 >> /tmp/log_compile_asn1c
-    
+    #svn co https://github.com/vlm/asn1c/trunk  /tmp/asn1c-r1516 -r 1516 > /tmp/log_compile_asn1c
+    git clone https://github.com/limingzhang513/asn1c-r1516.git
+    cd /tmp/asn1c-r1516
     # by lmz
     make clean
     ldconfig
 
+    patch -p0 < $OPENAIRCN_DIR/SRC/S1AP/MESSAGES/ASN1/asn1cpatch.p0 >> /tmp/log_compile_asn1c
+    patch -p0 < $OPENAIRCN_DIR/SRC/S1AP/MESSAGES/ASN1/asn1cpatch_2.p0 >> /tmp/log_compile_asn1c
+    patch -p0 < $OPENAIRCN_DIR/SRC/S1AP/MESSAGES/ASN1/asn1cpatch_3.p0 >> /tmp/log_compile_asn1c
+    
     ./configure
     make > /tmp/log_compile_asn1c 2>&1
     echo "=============================make install asn1c============================================="
     $SUDO make install
+    echo "=============================make install asn1c finished============================================="
   fi
 }
 
