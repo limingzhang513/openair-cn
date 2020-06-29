@@ -877,12 +877,20 @@ install_asn1c_from_source(){
     mkdir -p /tmp/asn1c-r1516
     cd /tmp/asn1c-r1516
     rm -rf /tmp/asn1c-r1516/*
+    echo "==============================download asn1c-r1516===================================="
+
     svn co https://github.com/vlm/asn1c/trunk  /tmp/asn1c-r1516 -r 1516 > /tmp/log_compile_asn1c
     patch -p0 < $OPENAIRCN_DIR/SRC/S1AP/MESSAGES/ASN1/asn1cpatch.p0 >> /tmp/log_compile_asn1c
     patch -p0 < $OPENAIRCN_DIR/SRC/S1AP/MESSAGES/ASN1/asn1cpatch_2.p0 >> /tmp/log_compile_asn1c
     patch -p0 < $OPENAIRCN_DIR/SRC/S1AP/MESSAGES/ASN1/asn1cpatch_3.p0 >> /tmp/log_compile_asn1c
+    
+    # by lmz
+    make clean
+    ldconfig
+
     ./configure
     make > /tmp/log_compile_asn1c 2>&1
+    echo "=============================make install asn1c============================================="
     $SUDO make install
   fi
 }
